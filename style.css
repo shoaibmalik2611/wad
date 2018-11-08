@@ -1,0 +1,11 @@
+img{
+    margin-left: 470px;
+    border: dotted;
+    border-color: #fa0455;
+    border-radius:15px;
+    box-shadow: 6px 5px 9px 0px #2b2929;
+    cursor: pointer;
+}
+p{
+    margin-left: 470px;
+} 
