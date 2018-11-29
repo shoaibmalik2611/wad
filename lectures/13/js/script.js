@@ -19,6 +19,20 @@ var questions = [{
         "for",
         "none of the above"],
     correctAnswer : 1
+},{
+    question : "C++ is",
+    choices : [ "select",
+        "High Level",
+        "Machine",
+        "none of the above"],
+    correctAnswer : 1
+},{
+    question : "Linux tornavald made",
+    choices : [ "select",
+        "Linux",
+        "Windows",
+        "Kali Linux"],
+    correctAnswer : 1
 }];
 
 var currentQuestion = 0;
@@ -27,11 +41,22 @@ var quizOver = false;
 displayCurrentQuestion();
 document.getElementById("quiz-message").style.display = 'none';
 function displayNext() {
-    /*Write your code here */
+    var ans=document.querySelector("input[type=radio]:checked");
+    if(ans==NULL)
+    {
+        var msg=document.getElementById("quiz-message");
+        msg.innerHTML="NO Selection were Made";
+    }
+    currentQuestion++;
+    displayCurrentQuestion();
 }
 
 function displayCurrentQuestion() {
-    /*Write your code here */
+    document.getElementById('question').innerHTML=questions[currentQuestion].question;
+    var i;
+    for (i = 0; i < questions[currentQuestion].choices.length; i++) {
+        document.getElementById('choice-list').innerHTML+='<li><input type="radio" name="checked" >'+ questions[currentQuestion].choices[i]+'</li>'
+    }
 }
 
 function resetQuiz() {
