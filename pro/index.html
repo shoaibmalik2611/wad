@@ -1,3 +1,10 @@
+<?php
+$con=mysqli_connect("localhost","root","data");
+if(!$con){
+        die("connection Failed");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,18 +71,11 @@
                     Categories
                 </a>
                 <ul class="collapse show list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a class="nav-link"  href="#">Laptops</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Computers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Mobiles</a>
-                    </li>
-                    <li>
-                        <a class="nav-link"  href="#">Tablets</a>
-                    </li>
+                    <?php
+                    require "db_connection1.php";
+                    include "function.php";
+                    getCats();
+                    ?>
                 </ul>
             </li>
             <li class="active">
@@ -84,18 +84,9 @@
                     Brands
                 </a>
                 <ul class="collapse show list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a class="nav-link" href="#">Apple</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Sony</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Dell</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Toshiba</a>
-                    </li>
+                    <?php
+                        getBrands();
+                    ?>
                 </ul>
             </li>
             <li>
@@ -124,12 +115,12 @@
 
 </div>
 <footer class="container-fluid">
-        <div class="row">
-            <div class="col text-center">
-               &copy; 2019 by Muhammad Ali Makhdoom
-            </div>
+    <div class="row">
+        <div class="col text-center">
+            &copy; 2019 by Muhammad Ali Makhdoom
         </div>
-    </footer>
+    </div>
+</footer>
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 </body>
