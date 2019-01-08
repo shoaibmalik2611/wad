@@ -6,6 +6,9 @@ if(!$con){
 ?>
 
 <!DOCTYPE html>
+<?php
+require "server/functions.php";
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,7 +77,6 @@ if(!$con){
                     <?php
                     require "db_connection1.php";
                     include "function.php";
-                    getCats();
                     ?>
                 </ul>
             </li>
@@ -85,8 +87,8 @@ if(!$con){
                 </a>
                 <ul class="collapse show list-unstyled" id="pageSubmenu">
                     <?php
-                        getBrands();
                     ?>
+                    <?php ?>
                 </ul>
             </li>
             <li>

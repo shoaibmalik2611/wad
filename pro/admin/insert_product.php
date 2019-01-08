@@ -1,11 +1,25 @@
 <?php
-$con=mysqli_connect("localhost","root","","data");
-    if(!$con){
-        die("connection Failed");
+require_once "db_connection.php";
+if(!isset($_POST['insert_products']))
+{
+    $pro_title =isset($_POST['pro_title']) ? $_POST['pro_title'] : '';
+    $pro_cat =isset($_POST['pro_cat']) ? $_POST['pro_cat'] : '';
+    $pro_brand =isset($_POST['pro_brand']) ? $_POST['pro_brand'] : '';
+    $pro_price =isset($_POST['pro_price']) ? $_POST['pro_price'] : '';
+    $pro_desc =isset($_POST['pro_desc']) ? $_POST['pro_desc'] : '';
+    $pro_keywords =isset($_POST['pro_kw']) ? $_POST['pro_kw'] : '';
+    $insertQuery = "insert into products(pro_title,pro_cat,pro_brand,pro_price,pro_desc,pro_keywords)
+    values('$pro_title','$pro_cat','$pro_brand','$pro_price','$pro_desc','$pro_keywords');";
+    $res = mysqli_query($con,$insertQuery);
+    if(!$res)
+    {
+        echo "Not Executed";
     }
+}
 ?>
-
-<html lang="en" class="gr__localhost"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Insert Product</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -16,36 +30,28 @@ $con=mysqli_connect("localhost","root","","data");
         * {
             font-family: 'Old Standard TT', serif;
         }
-
-        .input-group{
-            padding: 11px;
-        }
-
-        .float-md-right{
-            padding: 13px;
-        }
     </style>
 </head>
-<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+<body>
 <div class="container">
     <h1 class="text-center my-4"><i class="fas fa-plus fa-md"></i> <span class="d-none d-sm-inline"> Add New </span> Product </h1>
-    <form class="col-md-12">
-        <div class="row col-md-12">
-            <div class="col-md-3 col-xl-3">
+    <form>
+        <div class="row">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_title" class="float-md-right"> <span class="d-sm-none d-md-inline"> Product </span> Title:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-file-signature"></i></div>
                     </div>
-                    <input type="text" class="form-control" id="pro_title" name="pro_title" placeholder="Enter Product Title">
+                    <input type="text" class="form-control" id="pro_title" name="pro_title" placeholder="Enter Product Title" >
                 </div>
             </div>
-            <div class="col-md-3 col-xl-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_cat" class="float-md-right"><span class="d-sm-none d-md-inline"> Product </span> Category:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4 mt-3 mt-lg-0">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-list-alt"></i></div>
@@ -61,11 +67,11 @@ $con=mysqli_connect("localhost","root","","data");
                 </div>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-3 col-xl-3">
+        <div class="row my-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_brand" class="float-md-right"> <span class="d-sm-none d-md-inline"> Product </span> Brand:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-stamp"></i></div>
@@ -81,10 +87,10 @@ $con=mysqli_connect("localhost","root","","data");
                     </select>
                 </div>
             </div>
-            <div class="col-md-3 col-xl-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_img" class="float-md-right"><span class="d-sm-none d-md-inline"> Product </span> Image:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4 mt-3 mt-lg-0">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="far fa-image"></i></div>
@@ -93,11 +99,11 @@ $con=mysqli_connect("localhost","root","","data");
                 </div>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-3 col-xl-3">
+        <div class="row my-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_price" class="float-md-right"> <span class="d-sm-none d-md-inline"> Product </span> Price:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-money-bill"></i></div>
@@ -105,10 +111,10 @@ $con=mysqli_connect("localhost","root","","data");
                     <input class="form-control" id="pro_price" name="pro_price" placeholder="Enter Product Price">
                 </div>
             </div>
-            <div class="col-md-3 col-xl-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_kw" class="float-md-right"><span class="d-sm-none d-md-inline"> Product </span> Keyword:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4 mt-3 mt-lg-0">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-key"></i></div>
@@ -117,11 +123,11 @@ $con=mysqli_connect("localhost","root","","data");
                 </div>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-3 col-xl-3">
+        <div class="row my-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
                 <label for="pro_desc" class="float-md-right"><span class="d-sm-none d-md-inline"> Product </span> Detail:</label>
             </div>
-            <div class="col-md-7 col-xl-3">
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="far fa-comment-alt"></i></div>
@@ -130,15 +136,13 @@ $con=mysqli_connect("localhost","root","","data");
                 </div>
             </div>
         </div>
-        <div class="row col-md-12">
-            <div class="col-md-3 col-xl-0">
+        <div class="row my-3">
+            <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto"></div>
+            <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
+                <button type="submit" name="insert_products" class="btn btn-primary btn-block"><i class="fas fa-plus"></i> Insert Now </button>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-block col-md-7 col-xl-3 offset" style="
-"><i class="fas fa-plus"></i> Insert Now </button>
-
         </div>
     </form>
 </div>
-
-</body></html>
+</body>
+</html>
