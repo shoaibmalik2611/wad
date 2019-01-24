@@ -11,6 +11,20 @@ require "server/functions.php";
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers|Old+Standard+TT">
+
+    <script>
+        function checkEmail(email){
+            console.log(email);
+            var obj=new XMLHttpRequest();
+            var i=0;
+            obj.onreadystatechange=function () {
+                if (obj.readyState == 4 && obj.status == 200) {
+                    document.getElementById("hint").innerText=this.responseText;
+                }
+
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -98,7 +112,7 @@ require "server/functions.php";
         <form action="register.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
-                    <label for="c_name" class="float-md-right">   Date:</label>
+                    <label for="c_name" class="float-md-right">  Name:</label>
                 </div>
                 <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                     <div class="input-group">
@@ -106,11 +120,11 @@ require "server/functions.php";
                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                         </div>
                         <input type="text" class="form-control" id="c_name" name="c_name" placeholder="Enter your name"
-                               required pattern="[0][1-9]|[1][0-9]|[2][0-9]|[3][0-1]">
+                               required pattern="abc">
                     </div>
                 </div>
                 <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
-                    <label for="c_email" class="float-md-right"> Year:</label>
+                    <label for="c_email" class="float-md-right"> Email:</label>
                 </div>
                 <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4 mt-3 mt-lg-0">
                     <div class="input-group">
@@ -118,7 +132,8 @@ require "server/functions.php";
                             <div class="input-group-text"><i class="fas fa-at"></i></div>
                         </div>
                         <input type="text" class="form-control" id="c_email" name="c_email" placeholder="Enter your email"
-                               required pattern="[1][9][5-9][0-9]|[2][0][0][0-1]">
+                               onkeyup="checkEmail(this.value)">
+                        <span id="hint"></span>
                     </div>
                 </div>
             </div>
